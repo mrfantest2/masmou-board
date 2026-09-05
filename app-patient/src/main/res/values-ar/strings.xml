@@ -1,0 +1,5 @@
+<resources>
+    <string name="welcome_title">مرحباً بك</string>
+    <string name="welcome_message">مساحة هادئة للتواصل.</string>
+    <string name="offline_note">لا حاجة إلى اتصال بالإنترنت</string>
+</resources>
