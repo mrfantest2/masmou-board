@@ -15,24 +15,27 @@ import org.junit.runner.RunWith
 class FoundationTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
 
-    @Test fun launchShowsLocalizedWelcomeInLandscape() {
-        compose.onNodeWithText(compose.activity.getString(R.string.welcome_title)).assertIsDisplayed()
+    @Test
+    fun launchShowsPatientShellInLandscape() {
+        compose.onNodeWithText(compose.activity.getString(R.string.communication_area_title)).assertIsDisplayed()
         assertEquals(Configuration.ORIENTATION_LANDSCAPE, compose.activity.resources.configuration.orientation)
     }
 
-    @Test fun arabicResourcesUseRightToLeftLayout() {
+    @Test
+    fun arabicResourcesUseRightToLeftLayout() {
         val config = Configuration(compose.activity.resources.configuration)
         config.setLocale(Locale.forLanguageTag("ar"))
         val context = compose.activity.createConfigurationContext(config)
-        assertEquals("مرحباً بك", context.getString(R.string.welcome_title))
+        assertEquals("مساحة التواصل", context.getString(R.string.communication_area_title))
         assertEquals(android.view.View.LAYOUT_DIRECTION_RTL, context.resources.configuration.layoutDirection)
     }
 
-    @Test fun englishResourcesUseLeftToRightLayout() {
+    @Test
+    fun englishResourcesUseLeftToRightLayout() {
         val config = Configuration(compose.activity.resources.configuration)
         config.setLocale(Locale.ENGLISH)
         val context = compose.activity.createConfigurationContext(config)
-        assertEquals("Welcome", context.getString(R.string.welcome_title))
+        assertEquals("Communication area", context.getString(R.string.communication_area_title))
         assertEquals(android.view.View.LAYOUT_DIRECTION_LTR, context.resources.configuration.layoutDirection)
     }
 }
