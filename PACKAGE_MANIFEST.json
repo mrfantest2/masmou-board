@@ -1,0 +1,96 @@
+{
+  "package": "masmou-complete-project-handoff",
+  "generated": "2026-09-05",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 3375,
+      "sha256": "59c219d7064b130d0dd37f0af6040219ce0bffc834b8283c1d745f1db0bc9949"
+    },
+    {
+      "path": "CODEX_HANDOFF.md",
+      "bytes": 12082,
+      "sha256": "c838ce2d5cc32fb87090b523bfe7b75c32c04e05eccab7120821d5fe75e4b789"
+    },
+    {
+      "path": "FIRST_CODEX_PROMPT.txt",
+      "bytes": 2086,
+      "sha256": "f313ede10e1157293381889a73b1ea918cc686ea557d801dc2969f94949f0664"
+    },
+    {
+      "path": "GITHUB_FLOW_QUICK.md",
+      "bytes": 662,
+      "sha256": "fddd52e8440ebc12dde2f2998c82e1b80a57280a217c73fd64bb4ec966bbb194"
+    },
+    {
+      "path": "INSTALL_HANDOFF.ps1",
+      "bytes": 1158,
+      "sha256": "8e4cd5f578d1cd5591449b1f260590a6caa76dbf14cc4457335ec71ea681960f"
+    },
+    {
+      "path": "NON_CODEX_HANDOFF.md",
+      "bytes": 6297,
+      "sha256": "c3e71f2aaf987d89f87f7c059e29ef2cd5512a04dacf7e45c7e37bb1a24c86fe"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2197,
+      "sha256": "c6a87089983ca9f00e58ed4d558b7520de641e54b6bc9e2bb3e60eed2395304c"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 2167,
+      "sha256": "866f3c5ac216a24bb2b47cbf95e624623694825620a6f2d0baad8d0780f0c58c"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 1514,
+      "sha256": "2fdb843cc9e79c7875d6106eef115d24e3a4f7e2464923b98d9610e89237df26"
+    },
+    {
+      "path": "docs/GITHUB_WORKFLOW.md",
+      "bytes": 5406,
+      "sha256": "bbadbb10ba1cda68d2832599ee1579f49bf714cda7cd85fa33ba7f37d384d480"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 1394,
+      "sha256": "a75f803e549d032bd58fdc6dceb2541bc54fb9a8016b802eb7c5ff3dcf062a3a"
+    },
+    {
+      "path": "docs/M0_IMPLEMENTATION.md",
+      "bytes": 2889,
+      "sha256": "6e995b69962036b2999dd0fa21e906a804ca6f8ad7b6b4c36da11e76df8213b6"
+    },
+    {
+      "path": "docs/MILESTONES.md",
+      "bytes": 2993,
+      "sha256": "2639b3aa04e942349b34bbd6dbbfdd4d117895748f541417e7d8ebe92d09580f"
+    },
+    {
+      "path": "docs/PRODUCT_SPEC.md",
+      "bytes": 2792,
+      "sha256": "92dbd7dbf030948cb324b2d4be4eb716ab2cc21779c828723b6e13a0cd1ea665"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "bytes": 1376,
+      "sha256": "aa19f90ed0b3aa68252f610a60378f9a1cf8a7642d77ce62697fae14d903fc49"
+    },
+    {
+      "path": "docs/SOURCE_NOTES.md",
+      "bytes": 2736,
+      "sha256": "e69eb30849c5f7fd9d1c29d5736bda787adb69dee4893d9e0398c3f0d20cd884"
+    },
+    {
+      "path": "docs/source/original_concept_ar.pdf",
+      "bytes": 2237692,
+      "sha256": "e6576e954b22bd1603a6d52bff61376b704a8a24d14326b122f3a7f9d90a657f"
+    },
+    {
+      "path": "hardware/README.md",
+      "bytes": 679,
+      "sha256": "dbd72e20de81c9c902f1428800a93217f463dada56e2de0b5e337058cb1a2cfb"
+    }
+  ]
+}

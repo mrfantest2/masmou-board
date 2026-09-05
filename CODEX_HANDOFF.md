@@ -1,848 +1,498 @@
-# CODEX HANDOFF — Masmou Board
+# FULL CODEX HANDOFF — Masmou Board | مسموع
 
 Repository: `mrfantest2/masmou-board`
+Local working directory: `C:\Users\Administrator\masmou-board`
 
-Local working directory:
+## 1. Mission
 
-```text
-C:\Users\Administrator\masmou-board
-```
+Build a dignified communication tool for people who may have difficulty speaking, moving, or seeing, especially in patient/care settings.
 
-Product working name: **Masmou Board | مسموع**
+The original concept specifically identifies:
+- stroke patients who may have difficulty speaking despite awareness
+- ICU patients who may be unable to express themselves because of ventilation
+- older adults and people with low vision who may struggle with complex smartphones
+- families who remain anxious when they cannot understand what the patient needs
 
-Current product stage: **Android software prototype only**
+The Android application is the **current prototype vehicle**. The dedicated physical mini-tablet remains a later product stage.
 
----
+## 2. Current scope decision
 
-# 1. Mission
+### Build now
 
-Build an Android-first communication board that helps people communicate when speaking, movement, vision, or medical equipment makes ordinary communication difficult.
+Android software, in this order:
 
-Primary users may include:
-- conscious ICU patients who cannot speak normally
-- people recovering from stroke
-- older adults
-- people with low vision
-- users with limited fine-motor control
-- family members
-- caregivers
-- nursing staff
+1. Patient app foundation
+2. Patient communication UI
+3. freehand writing/drawing
+4. quick communication actions
+5. local speech output
+6. accessibility modes
+7. Family app foundation
+8. secure local Bluetooth/BLE event synchronization
+9. event history and repeated-pain alerts
+10. reliability / bedside-style hardening
+11. real-device QA
 
-The product must feel calm, respectful, simple, and dignified rather than childish or gadget-heavy.
+### Defer
 
-The Android app is the proof-of-concept for the future dedicated mini-tablet device. The hardware/manufacturing phase is intentionally deferred until the software interaction model is proven.
+Do not build yet:
 
----
-
-# 2. Scope decision: Android now, hardware later
-
-The broader concept includes a future small purpose-built tablet, potentially around iPad Mini/A5 class size, with manufacturing/OEM/ODM research later.
-
-For the current phase, DO NOT work on:
-- custom electronics
-- PCB design
-- enclosure CAD
-- screen sourcing
+- custom PCB
+- custom enclosure
+- firmware
+- factory/OEM/ODM integration
 - manufacturing BOM
-- OEM/ODM supplier selection
-- China/Shenzhen sourcing
-- Malaysia/Penang sourcing
-- Vietnam/India sourcing
-- travel or visa planning
-- cellular modem hardware
-- industrial design production files
+- cellular hardware
+- hospital HIS/EMR integration
+- cloud backend
+- Firebase
+- advertising
+- analytics
+- continuous microphone recording
+- handwriting OCR/AI
+- real emergency-service dialing
 
-Those topics belong to a later hardware milestone.
+## 3. Patient Android app
 
-The immediate objective is to validate the complete communication experience on ordinary Android phones/tablets.
+App name: `Masmou Patient`
+Namespace target: `com.fantest.masmou.patient`
 
----
+### Main layout
 
-# 3. Core product principles
+Landscape-first, reflecting the source concept's wide central writing area with large communication controls around it.
 
-1. **Offline first**
-   - Patient communication must work without Internet.
+Primary areas:
 
-2. **Communication before connectivity**
-   - Writing, quick actions, and speech must still work when Bluetooth is unavailable.
+- header/status area
+- large central writing/communication canvas
+- quick communication actions
+- bottom drawing/tool controls
+- prominent Speak action
+- visible connection status later when Family/BLE exists
 
-3. **Accessibility is not optional**
-   - Large controls, TalkBack semantics, high contrast, haptics, scalable text, RTL support.
+### Freehand writing
 
-4. **Arabic and English are equal first-class languages**
-   - Arabic RTL must be native and correct.
-   - English LTR must be native and correct.
+The source concept calls for a large white writing area and clear writing colors.
 
-5. **Privacy first**
-   - No continuous microphone recording.
-   - No cloud account requirement.
-   - No analytics SDK.
-   - No advertising.
-   - No remote data collection in the MVP.
+Implement:
 
-6. **Minimal architecture**
-   - Do not build infrastructure before a real milestone needs it.
-
-7. **One-tap communication**
-   - Common requests should require as little physical/cognitive effort as possible.
-
-8. **Graceful degradation**
-   - TTS failure must not break visual communication.
-   - BLE failure must not break local communication.
-   - Family app disconnect must not affect Patient app operation.
-
----
-
-# 4. Applications
-
-## 4.1 Masmou Patient
-
-Primary app used by the patient.
-
-Target package namespace:
-
-```text
-com.fantest.masmou.patient
-```
-
-Primary orientation:
-
-```text
-Landscape-first
-```
-
-Portrait can be supported where practical, but landscape is the design target for the prototype.
-
-Core responsibilities:
-- freehand communication canvas
-- large one-touch communication buttons
-- typed communication
-- text-to-speech
-- Arabic/English UI
-- accessibility modes
-- local communication event generation
-- optional later BLE connection to Family app
-
-## 4.2 Masmou Family
-
-Separate Android app added in a later milestone.
-
-Responsibilities:
-- display Patient connection state
-- receive discrete communication events
-- show recent events and timestamps
-- show stronger indication for urgent/pain events
-- later persist bounded event history
-
-The Family app does not control or gate the Patient app.
-
----
-
-# 5. Patient main screen
-
-Build a clean landscape-first interface with three major regions.
-
-## A. Header/status area
-
-Show only useful status such as:
-- Masmou identity
-- selected language
-- accessibility mode
-- optional later Family connection state
-
-Do not clutter this area.
-
-## B. Main communication area
-
-Large central white canvas for writing/drawing.
-
-Requirements:
 - finger input
 - stylus input
-- smooth freehand strokes
-- simple stroke representation
 - black
 - blue
 - red
 - green
-- clear action
-- lock/unlock action
+- eraser
+- clear all
+- lock/unlock protection
 
-Lock behavior:
-- when locked, destructive clearing is prevented
-- intentional unlock is required before clearing protected content
+No handwriting recognition in V1.
 
-Do NOT add OCR or handwriting recognition in the first prototype.
+### Quick communication actions
 
-## C. Quick actions
+The source explicitly includes large one-touch symbols for basic needs such as:
 
-Large communication buttons suitable for users with limited fine motor control.
+- Water
+- Pain
+- Toilet
+- Nurse
 
-Initial actions:
+The visual mockup also contains direct yes/no-style controls and family/urgent-style actions.
 
-```text
-YES
-NO
-WATER
-PAIN
-TOILET
-NURSE / HELP
-FAMILY
-URGENT
-```
+For the Android prototype use:
 
-Arabic equivalents must be included through localized resources.
-
-Each action should provide immediate feedback:
-- visual state feedback
-- haptic feedback where appropriate
-- spoken phrase when TTS is enabled/available
-
-The Urgent action is a communication signal only.
-
-DO NOT automatically dial emergency services in the MVP.
-
----
-
-# 6. Typed communication
-
-Provide a simple optional text input mode.
-
-The user should be able to:
-- type a short message
-- see it clearly
-- tap Speak
-- hear Android TextToSpeech read it
-
-Typed messages can later become CommunicationEvents if needed.
-
-Do not overcomplicate text editing.
-
----
-
-# 7. Voice / Text-to-Speech requirements
-
-Use Android's native `TextToSpeech` APIs first.
-
-## Required behavior
-
-The app must support speech for:
-- quick-action phrases
-- typed text
-
-## Arabic
-
-Preferred behavior:
-- use Arabic TTS when available
-- prefer a clear neutral/Modern Standard Arabic-style voice for general understanding
-- do not hardcode a device-specific voice name
-- query installed TTS voices/languages at runtime
-- use an appropriate Arabic locale available on the device
-- if a more specific Arabic locale is unavailable, fall back safely to a supported Arabic locale
-
-The UI must clearly remain usable if Arabic TTS is unavailable.
-
-## English
-
-Use an available English TTS locale.
-
-Do not hardcode a single vendor-specific English voice.
-
-## Voice settings
-
-For the prototype, keep settings minimal:
-- speech enabled/disabled
-- speech rate
-- optional voice selection only if this can be implemented simply using installed Android TTS voices
-
-Do not add cloud TTS in the MVP.
-
-Do not require Internet for speech.
-
-## TTS acceptance tests
-
-Test at minimum:
-- Arabic quick actions
-- English quick actions
-- typed Arabic
-- typed English
-- missing/unavailable TTS language
-- TTS engine initialization failure
-
-Expected behavior on failure:
-- visual communication continues normally
-- app does not crash
-- user receives a clear non-blocking indication
-
----
-
-# 8. Accessibility modes
-
-## Standard mode
-
-- large white communication surface
-- clear icons
-- readable labels
-- large touch targets
-
-## Low-vision mode
-
-- larger text/icons
-- high contrast
-- strong control boundaries
-- haptic confirmations
-- spoken confirmation where useful
-
-## Blind-user software support
-
-For Android prototype:
-- TalkBack semantics
-- meaningful content descriptions
-- logical focus order
-- no icon-only essential control without an accessible label
-- haptic feedback
-- spoken UI feedback where useful
-
-Mechanical raised/tactile buttons are a future hardware feature, not current Android work.
-
----
-
-# 9. Communication event model
-
-Create a platform-neutral domain model when the milestone requires it.
-
-Conceptual model:
-
-```kotlin
-data class CommunicationEvent(
-    val id: String,
-    val type: CommunicationEventType,
-    val timestampEpochMillis: Long,
-    val text: String? = null,
-    val urgent: Boolean = false,
-    val protocolVersion: Int = 1
-)
-```
-
-Suggested event types:
-
-```text
-YES
-NO
-WATER
-PAIN
-TOILET
-NURSE
-FAMILY
-URGENT
-TEXT
-```
-
-The domain model must not depend on Compose or BLE.
-
----
-
-# 10. Family synchronization
-
-Add only when the BLE milestone begins.
-
-Preferred flow:
-
-```text
-Patient action
-   -> CommunicationEvent
-   -> local UI/TTS
-   -> optional BLE encoder
-   -> BLE
-   -> Family decoder
-   -> Family event UI/history
-```
-
-Requirements:
-- versioned message format
-- small payloads
-- malformed messages rejected safely
-- automatic reconnect where practical
-- connection status visible
-- Patient app remains fully usable during disconnect
-
-Compact JSON with `kotlinx.serialization` is acceptable for the prototype if a serialization dependency is already justified by this milestone.
-
-Do not build a server to solve local Bluetooth communication.
-
----
-
-# 11. Event history and pain alert
-
-Add persistence only when the dedicated milestone begins.
-
-Use Room at that stage.
-
-Family event history should be bounded rather than growing forever.
-
-Initial repeated-pain rule:
-
-```text
-2 PAIN events within 60 minutes
-```
-
-When triggered, Family app may show a stronger notification/alert.
-
-This is a communication heuristic, not diagnosis or clinical decision support.
-
-Unit-test this rule.
-
----
-
-# 12. Privacy and safety boundaries
-
-Do not add:
-- continuous audio recording
-- always-on microphone
-- background room recording
-- patient surveillance
-- medical diagnosis
-- clinical recommendations
-- real emergency dispatch
-- cloud medical records
-- Firebase analytics
-- advertising SDKs
-
-Only explicit communication events should be transmitted/persisted.
-
-The app is a prototype communication aid, not a certified medical device.
-
-Do not represent it as a replacement for nurses, caregivers, monitoring equipment, emergency systems, or medical judgment.
-
----
-
-# 13. Visual design direction
-
-Desired character:
-- calm
-- clinical-professional
-- modern
-- respectful
-- simple
-- high legibility
-
-Suggested visual language:
-- white primary canvas/surfaces
-- dark navy accents
-- restrained status colors where necessary
-
-Avoid:
-- rainbow-heavy styling
-- childish visual language
-- unnecessary gradients
-- excessive animation
-- small controls
-- dense menus
-
-Animation must never delay communication.
-
----
-
-# 14. Android technical stack
-
-Use:
-- Kotlin
-- Jetpack Compose
-- Material 3
-- Gradle Kotlin DSL
-- Android TextToSpeech
-- Android localization resources
-- Android accessibility semantics
-- Android haptics
-- Android BLE in its milestone
-- Room in its milestone
-
-Prefer stable Android/platform APIs.
-
-Avoid unnecessary dependencies.
-
-Do not add:
-- Firebase
-- Retrofit
-- cloud SDKs
-- analytics SDKs
-- DI framework just for architecture fashion
-- navigation framework unless multiple screens actually need it
-- OCR/AI libraries
-
-A simple architecture is preferable to an elaborate clean-architecture template.
-
----
-
-# 15. Repository strategy
-
-Current repo:
-
-```text
-mrfantest2/masmou-board
-```
-
-Local path:
-
-```text
-C:\Users\Administrator\masmou-board
-```
-
-Expected structure should evolve only as needed.
-
-Initial possible shape:
-
-```text
-masmou-board/
-├── AGENTS.md
-├── CODEX_HANDOFF.md
-├── README.md
-├── app-patient/
-├── core-model/        # create only when shared domain model is needed
-├── app-family/        # create only at Family milestone
-├── core-ble/          # create only at BLE milestone
-└── core-storage/      # create only at persistence milestone
-```
-
-Do not scaffold empty future modules just to match this diagram.
-
----
-
-# 16. Milestones
-
-Work sequentially.
-
-## M0 — Android Foundation
-
-GitHub issue: `#1`
-
-Goal:
-Create the minimum healthy Android project.
-
-Scope:
-- Kotlin
-- Compose
-- Material 3
-- Gradle Kotlin DSL
-- `app-patient`
-- namespace `com.fantest.masmou.patient`
-- app name `Masmou Patient`
-- landscape-first support
-- Arabic + English resource foundation
-- simple launch screen
-- no Internet dependency
-
-Do NOT implement:
-- real drawing
-- BLE
-- Family app
-- Room
-- cloud/backend
-- accounts
-- OCR
-- future milestones
-
-Acceptance:
-- project syncs
-- app launches
-- landscape works
-- Arabic resources can be selected by locale
-- `assembleDebug` passes
-- relevant targeted tests pass
-
-STOP after M0.
-
----
-
-## M1 — Patient Communication Shell
-
-GitHub issue: `#2`
-
-Build:
-- header/status area
-- large communication-area placeholder
-- quick-action panel
-- bottom tool/action area
-- responsive landscape layout
-- Arabic RTL
-- English LTR
-
-No real drawing yet.
-
----
-
-## M2 — Writing Canvas
-
-GitHub issue: `#3`
-
-Build:
-- Compose Canvas
-- finger/stylus drawing
-- black/blue/red/green
-- clear
-- lock/unlock
-- destructive-clear protection
-
-No OCR.
-
----
-
-## M3 — Quick Actions + TTS
-
-GitHub issue: `#4`
-
-Build:
 - Yes
 - No
 - Water
 - Pain
 - Toilet
-- Nurse
+- Nurse / Help
 - Family
 - Urgent
-- Arabic/English labels
-- Android TTS
-- haptic/visual feedback
 
----
+The Urgent action is communication only. It does not automatically dial emergency services.
 
-## M4 — Accessibility
+### Typed communication
 
-GitHub issue: `#5`
+Add typed text communication for users who can type.
 
-Build/test:
-- standard mode
-- low-vision mode
-- TalkBack
-- high contrast
-- larger text/touch targets
-- haptics
+- Arabic or English text input
+- Speak button
+- clear typed text
+- local speech output
+
+## 4. Voice / TextToSpeech
+
+The source concept requires converting written/selected communication into audible speech.
+
+Use Android `TextToSpeech`.
+
+Requirements:
+
+- local/offline-capable behavior where the installed engine supports it
+- Arabic quick-action phrases
+- English quick-action phrases
+- typed Arabic -> Speak
+- typed English -> Speak
+- speech-rate control
+- detect language/voice availability
+- non-blocking status if a voice is unavailable
+- do not hardcode one Samsung/Google-specific voice
+- TTS failure must not block the rest of the app
+
+Arabic:
+- prefer a clear installed Arabic voice appropriate for Modern Standard Arabic/general Arabic communication
+- use locale capability checks at runtime
+
+English:
+- use an installed compatible English voice
+
+No continuous audio capture or microphone recording.
+
+## 5. Accessibility
+
+The source describes three user groups/modes:
+
+### Standard visual mode
+- high-contrast white writing area
+- clear colored symbols
+- normal visual/manual control
+
+### Low-vision mode
+- larger symbols
+- stronger contrast
+- stronger button boundaries
+- spoken confirmation
+- haptic confirmation
+
+### Blind-user support
+The future hardware concept includes raised mechanical/tactile controls.
+
+For Android V1, implement the software equivalent:
+
+- TalkBack semantics
+- meaningful content descriptions
 - logical focus order
+- haptic feedback
+- spoken feedback where useful
+- large target areas
 
----
+Mechanical raised buttons remain hardware-stage work.
 
-## M5 — Family App Foundation
+## 6. Family Android app
 
-GitHub issue: `#6`
+The original concept includes a Family app with:
 
-Build:
-- separate `Masmou Family` Android app
-- connection placeholder
-- recent-event UI
-- shared CommunicationEvent model
+- communication event log
+- repeated-pain alerts
+- family-member access
+- immediate synchronization of written messages / selected symbols
+- Bluetooth connection
 
-No BLE transport yet.
+For the Android prototype:
 
----
-
-## M6 — BLE Communication
-
-GitHub issue: `#7`
-
-Build:
-- Patient -> Family BLE transfer
-- versioned encoding
-- connection state
-- reconnect behavior
-- malformed-message rejection
-
-Test on two real Android devices.
-
----
-
-## M7 — Event History + Pain Alert
-
-GitHub issue: `#8`
-
-Build:
-- Room persistence
-- bounded event history
+### Initial Family app
+- local patient profile/name
+- connection status
+- recent communication event list
 - timestamps
-- repeated-pain rule
-- Family notification behavior
+- Pain/Urgent highlighting
+- display incoming typed messages where applicable
 
----
+### Family ownership/invite concept
+Preserve the source requirement for an owner/family model, but do not force a cloud-account system into the MVP.
 
-## M8 — Kiosk / Reliability Hardening
+Start with a local/offline profile and pairing model. A later cloud account/invite mechanism requires an explicit new product decision.
 
-GitHub issue: `#9`
+## 7. Communication events
 
-Build/test:
-- full-screen/kiosk-friendly use
-- accidental-exit reduction
-- lifecycle recovery
-- state restoration
-- BLE recovery
-- accessibility regression
+Represent explicit patient actions as structured events.
 
----
+Suggested domain model:
 
-## M9 — Real Device QA
+`CommunicationEvent`
+- `id`
+- `type`
+- `timestamp`
+- `text?`
+- `urgency`
+- `protocolVersion`
 
-GitHub issue: `#10`
+Initial types:
 
-Test:
-- tablet
-- phone
-- stylus if available
-- Arabic
-- English
-- TalkBack
-- TTS Arabic/English
-- BLE distance/reconnect
-- long-running sessions
+- YES
+- NO
+- WATER
+- PAIN
+- TOILET
+- NURSE
+- FAMILY
+- URGENT
+- TEXT
 
-Fix demonstrated issues only.
+The event model must not depend on Compose or BLE.
 
----
+## 8. Event history and privacy
 
-## M10 — Hardware research (DEFERRED)
+The source explicitly prefers timestamped request events instead of continuous audio recording.
 
-GitHub issue: `#11`
+Persist only deliberate communication events.
 
-Do not start until software interaction is validated.
+Do not continuously record audio.
 
-Future scope can include:
-- dedicated mini-tablet form factor
-- display
-- enclosure
-- stylus retention
-- tactile controls
-- battery
-- charging
-- Bluetooth/cellular variants
-- bedside mounting
-- weight/thickness targets
-- manufacturing BOM
-- OEM/ODM research
+For the Family app:
+- bounded event history
+- event timestamps
+- optional text payload for typed messages
+- clear visual urgency state
 
----
+## 9. Repeated-pain alert
 
-# 17. Codex usage efficiency rules
+The source gives the example:
 
-This project is intentionally optimized to reduce Codex usage.
+- Pain requested twice within one hour -> family notification / stronger attention
 
-Codex must:
-- work one issue at a time
-- read `AGENTS.md`
-- read this file
-- read the active issue
-- avoid scanning unrelated issues/files
-- avoid broad planning when requirements already exist here
-- avoid rewriting working code
-- avoid implementing future milestones
-- use targeted compile/tests while iterating
-- run broader milestone verification once at completion
-- stop immediately when acceptance criteria are met
+Implement the initial prototype rule as:
 
-Do not repeatedly explain the product back to the user.
+`2 PAIN events within 60 minutes`
 
-Do not ask for approval between safe implementation steps inside an active milestone.
+This is a communication alert, not medical diagnosis or automated clinical escalation.
 
-If a safe build/compiler/lint failure is directly caused by the current change, fix it autonomously.
+## 10. Bluetooth/BLE
 
-Ask the user only when a genuine external decision or physical-device interaction is required.
+The source states that family phones should receive selected/written communication through secure Bluetooth.
 
----
+Prototype architecture:
 
-# 18. Build verification policy
+Patient app
+-> `CommunicationEvent`
+-> versioned encoder
+-> BLE/local Bluetooth transport
+-> decoder
+-> Family app
 
-During implementation:
-- compile the relevant module
-- run targeted unit tests where useful
+Requirements:
 
-At milestone completion:
-- run relevant unit tests
-- run `lintDebug` where configured
-- run `assembleDebug`
+- visible connection state
+- reconnect where practical
+- malformed data rejected safely
+- small versioned messages
+- local Patient communication remains fully usable when disconnected
+- no Internet required for core Patient-to-Family communication
 
-Do not claim success without real build output.
+Do not over-engineer cryptography in the first build, but do not transmit personally identifying data beyond what the prototype actually needs.
 
-If Android SDK/Java/Gradle configuration prevents execution, report the exact blocker.
+## 11. Visual identity
 
-Do not convert an unverified build into a success claim.
+The source calls for a calm medical visual identity:
 
----
+- white
+- dark navy
+- professional
+- not rainbow
+- not childish
+- large clear controls
+- strong readability
 
-# 19. Git workflow
+Use this same tone in the Android UI.
 
-Prefer one branch per milestone, for example:
+## 12. Physical product targets — future only
+
+Archive these targets from the source for later hardware research:
+
+- approximately A5-class size
+- around 250 g target
+- around 7–9 mm class thickness
+- bedside placement
+- easy transport
+- thick/easy-grip stylus
+- stylus tether/retention
+- magnetic attachment concept
+- calm white/navy industrial design
+
+These are concept targets, not validated manufacturing specifications.
+
+## 13. Source pricing concept — archive only
+
+The source document provides initial hardware pricing ranges for:
+
+- simple LCD version
+- smart/hybrid Bluetooth + Family app + voice version
+- advanced ICU/cellular version
+
+Do not use these ranges as current Android engineering requirements or verified manufacturing quotations.
+
+## 14. Source rollout plan vs current Android decision
+
+Original source plan:
+1. test simple LCD board
+2. smart Bluetooth prototype
+3. evaluate with speech/nursing specialists
+4. pilot production of roughly 50–100 units
+
+Current user decision:
+**build the Android app first.**
+
+Therefore the software roadmap is the active engineering plan, while the source hardware rollout remains preserved for later.
+
+## 15. Repository structure
+
+Keep documentation compact.
 
 ```text
-codex/m0-foundation
-codex/m1-patient-shell
-codex/m2-writing-canvas
-codex/m3-quick-actions-tts
-codex/m4-accessibility
-codex/m5-family-foundation
-codex/m6-ble
-codex/m7-events-alerts
-codex/m8-hardening
+masmou-board/
+├── AGENTS.md
+├── CODEX_HANDOFF.md
+├── FIRST_CODEX_PROMPT.txt
+├── README.md
+├── docs/
+│   ├── HANDOFF.md
+│   ├── PRODUCT_SPEC.md
+│   ├── ARCHITECTURE.md
+│   ├── DECISIONS.md
+│   ├── MILESTONES.md
+│   ├── ROADMAP.md
+│   ├── SOURCE_NOTES.md
+│   └── source/
+│       └── original_concept_ar.pdf
+└── hardware/
+    └── README.md
 ```
 
-Keep commits focused.
+Create Android source modules only when a real milestone requires them.
 
-Do not create large unrelated refactors inside milestone branches.
+Do not build a large empty modular architecture in advance.
 
----
+## 16. Codex usage-efficiency rules
 
-# 20. First Codex execution instruction
+To minimize usage:
 
-Use this exact task for the first implementation run:
+- one milestone per Codex run
+- read `AGENTS.md`, `docs/HANDOFF.md`, and active issue first
+- do not read all docs by default
+- do not read the PDF unless explicitly verifying the source
+- do not re-plan the whole product
+- use targeted tests during implementation
+- run full milestone checks only at completion
+- avoid speculative refactors
+- avoid multiple agents for routine work
+- prefer stable platform APIs
+- stop as soon as acceptance criteria pass
+
+## 17. Current status and next task boundary
+
+**M0 — Android Foundation is complete and merged.**
+
+- Issue #1: closed
+- PR #15: merged
+- implementation commit: `8a50de9a6262423fa972276b45b7c41cfb358f22`
+- merge commit: `a8810eb2cd8c88486fd31c22e9ff3ae0dd2665f9`
+- build and lint passed
+- 3 connected device tests passed on Android 12 / API 31
+
+No implementation milestone is currently active. Do not start M1 or later
+until the user explicitly requests the matching issue.
+
+The completed M0 foundation contains:
+
+Requirements:
+
+- Kotlin
+- Jetpack Compose
+- Material 3
+- Gradle Kotlin DSL
+- application module `app-patient`
+- namespace `com.fantest.masmou.patient`
+- app name `Masmou Patient`
+- landscape-first base
+- Arabic + English resource foundation
+- simple professional launch screen
+- no Internet dependency
+
+M0 intentionally does not implement:
+- canvas
+- TTS feature
+- BLE
+- Family app
+- Room
+- cloud
+- accounts
+- OCR
+- emergency dialing
+- hardware
+- later milestones
+
+Completed verification:
+
+- Gradle project setup and Kotlin compilation passed
+- `assembleDebug` passed
+- `lintDebug` passed with 0 errors and 8 documented advisories
+- 3 connected foundation tests passed
+- APK installation and cold launch passed
+- APK has no Internet permission
+
+The next assistant must run fresh verification for any future change rather
+than relying on M0 results.
+
+
+# 18. GitHub milestone workflow
+
+For every implementation milestone:
+
+1. use the matching GitHub issue
+2. branch from current `main`
+3. implement only that milestone
+4. run verification
+5. commit
+6. push the milestone branch
+7. open a PR to `main`
+8. include `Closes #<issue>` in the PR body
+9. stop
+
+Do not auto-merge.
+Do not start the next milestone.
+
+Read `docs/GITHUB_WORKFLOW.md` for exact branch names and PR requirements.
+
+Completed M0 record:
+- Issue: `#1` — closed
+- Branch: `codex/m0-foundation`
+- PR: `#15 — M0 Android Foundation` — merged
+
+
+# 18. GitHub implementation workflow
+
+All engineering milestones use:
 
 ```text
-Work in C:\Users\Administrator\masmou-board.
-
-Read AGENTS.md and CODEX_HANDOFF.md, then implement GitHub Issue #1 (M0 — Android Foundation) only.
-
-Do not implement M1 or later.
-
-Create the minimum healthy Kotlin + Jetpack Compose + Material 3 Android project with Gradle Kotlin DSL for app-patient, namespace com.fantest.masmou.patient, app name Masmou Patient, landscape-first support, Arabic and English resource foundations, a simple launch screen, and no Internet dependency.
-
-Prefer stable compatible Android/Kotlin/Compose versions already supported by the local environment. Do not add unnecessary dependencies.
-
-Verify with targeted checks and assembleDebug. Fix safe implementation/build failures autonomously.
-
-Stop immediately once M0 acceptance criteria pass.
-
-Final output only:
-- status
-- changed files
-- exact verification commands/results
-- blocker if any
+one GitHub issue
+    ↓
+one codex/* branch
+    ↓
+implementation
+    ↓
+verification
+    ↓
+one focused commit
+    ↓
+push
+    ↓
+one pull request
+    ↓
+STOP
 ```
 
----
+Detailed rules are in:
 
-# 21. Definition of success for Android prototype
+`docs/GITHUB_WORKFLOW.md`
 
-The Android prototype is successful when a real user can:
+Important constraints:
 
-1. launch Masmou Patient quickly
-2. understand the interface with minimal instruction
-3. draw/write using finger or stylus
-4. request common needs with one large tap
-5. hear selected phrases through local Android TTS
-6. type and speak short messages
-7. use Arabic correctly in RTL
-8. use English correctly in LTR
-9. use high-contrast/low-vision mode
-10. navigate essential controls with TalkBack
-11. continue communicating completely offline
-12. later transmit discrete communication events to nearby Masmou Family over BLE
-13. continue local communication even if Family/BLE disconnects
-
-Only after these interactions are validated should the project move toward a dedicated physical mini-tablet and manufacturing research.
-
----
-
-# 22. Current instruction to Codex
-
-**CURRENT ACTIVE WORK: M0 / GitHub Issue #1 only.**
-
-Do not start hardware work.
-Do not start manufacturing research.
-Do not start generic smart-home/POS/education tablet variants.
-Do not start Family/BLE before their milestones.
-
-Build the Android communication product first.
+- Never discard unrelated local changes.
+- Do not use destructive Git cleanup commands.
+- Do not install or authenticate GitHub CLI merely to create a PR.
+- If `gh` is already available and authenticated, create the PR.
+- If `gh` is unavailable but push works, stop after push and report branch + commit SHA.
+- Do not merge the PR during the implementation run.
+- Use `Closes #<issue>` in the PR body.
+- Start the next milestone only after the prior PR is merged and `main` is synchronized.
