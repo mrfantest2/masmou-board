@@ -85,8 +85,8 @@ private fun PatientShell() {
             .safeDrawingPadding(),
     ) {
         val compact = maxHeight < 420.dp || maxWidth < 760.dp
-        val outerPadding = if (compact) 12.dp else 20.dp
-        val spacing = if (compact) 10.dp else 16.dp
+        val outerPadding = if (compact) 10.dp else 20.dp
+        val spacing = if (compact) 8.dp else 16.dp
 
         Column(
             modifier = Modifier
@@ -127,15 +127,15 @@ private fun PatientHeader(compact: Boolean) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = if (compact) 58.dp else 68.dp),
+            .heightIn(min = if (compact) 54.dp else 68.dp),
         shape = RoundedCornerShape(if (compact) 16.dp else 20.dp),
         color = MaterialTheme.colorScheme.surface,
         tonalElevation = 1.dp,
     ) {
         Row(
             modifier = Modifier.padding(
-                horizontal = if (compact) 16.dp else 20.dp,
-                vertical = if (compact) 10.dp else 12.dp,
+                horizontal = if (compact) 14.dp else 20.dp,
+                vertical = if (compact) 8.dp else 12.dp,
             ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -163,7 +163,7 @@ private fun PatientHeader(compact: Boolean) {
             ) {
                 Text(
                     text = stringResource(R.string.status_offline_ready),
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = if (compact) 7.dp else 8.dp),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -185,7 +185,7 @@ private fun CommunicationArea(modifier: Modifier, compact: Boolean) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(if (compact) 14.dp else 22.dp),
+                .padding(if (compact) 12.dp else 22.dp),
             contentAlignment = Alignment.Center,
         ) {
             Column(
@@ -230,7 +230,7 @@ private fun QuickActionArea(
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.32f)),
     ) {
         Column(
-            modifier = Modifier.padding(if (compact) 12.dp else 16.dp),
+            modifier = Modifier.padding(if (compact) 8.dp else 16.dp),
             verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
             Text(
@@ -254,6 +254,7 @@ private fun QuickActionArea(
                         rowActions.forEach { labelRes ->
                             PlaceholderButton(
                                 label = stringResource(labelRes),
+                                minHeight = if (compact) 48.dp else 64.dp,
                                 modifier = Modifier
                                     .weight(1f)
                                     .fillMaxHeight(),
@@ -267,10 +268,14 @@ private fun QuickActionArea(
 }
 
 @Composable
-private fun PlaceholderButton(label: String, modifier: Modifier = Modifier) {
+private fun PlaceholderButton(
+    label: String,
+    modifier: Modifier = Modifier,
+    minHeight: Dp = 64.dp,
+) {
     OutlinedButton(
         onClick = {},
-        modifier = modifier.heightIn(min = 64.dp),
+        modifier = modifier.heightIn(min = minHeight),
         enabled = false,
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.35f)),
@@ -295,13 +300,13 @@ private fun BottomToolArea(compact: Boolean, spacing: Dp) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = if (compact) 66.dp else 78.dp),
+            .heightIn(min = if (compact) 60.dp else 78.dp),
         shape = RoundedCornerShape(if (compact) 16.dp else 20.dp),
         color = MaterialTheme.colorScheme.surface,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.28f)),
     ) {
         Row(
-            modifier = Modifier.padding(if (compact) 8.dp else 10.dp),
+            modifier = Modifier.padding(if (compact) 6.dp else 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(spacing),
         ) {
@@ -315,9 +320,8 @@ private fun BottomToolArea(compact: Boolean, spacing: Dp) {
             tools.forEach { labelRes ->
                 PlaceholderButton(
                     label = stringResource(labelRes),
-                    modifier = Modifier
-                        .weight(1f)
-                        .heightIn(min = 56.dp),
+                    minHeight = if (compact) 48.dp else 56.dp,
+                    modifier = Modifier.weight(1f),
                 )
             }
         }
