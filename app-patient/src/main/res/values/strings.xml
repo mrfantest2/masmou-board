@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">Masmou Patient</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_message">A calm space for communication.</string>
+    <string name="offline_note">No internet connection needed</string>
+</resources>
