@@ -1,0 +1,81 @@
+Work in:
+C:\Users\Administrator\masmou-board
+
+Repository:
+mrfantest2/masmou-board
+
+Current status:
+GitHub Issue #1 — M0 Android Foundation is closed.
+PR #15 is merged. No implementation milestone is active.
+
+Do not implement a milestone until the user explicitly requests its issue.
+
+Read first:
+1. AGENTS.md
+2. docs/HANDOFF.md
+3. docs/GITHUB_WORKFLOW.md
+4. only the requested milestone in docs/MILESTONES.md
+5. the active GitHub issue if one is explicitly requested
+
+Do not read every documentation file automatically.
+Do not read docs/source/original_concept_ar.pdf unless source verification is explicitly required.
+
+GIT WORKFLOW:
+- inspect `git status`
+- switch to `main`
+- `git pull --ff-only`
+- if unrelated uncommitted user changes exist, do not discard them; stop and report them
+- create/use the exact branch in docs/GITHUB_WORKFLOW.md
+- implement only the explicitly requested issue
+- verify
+- commit only M0 files
+- push only the active issue branch
+- if `gh` is already installed and authenticated, create one PR to `main`
+- PR body must contain `Closes #<active-issue>`
+- do NOT install/authenticate `gh`
+- do NOT merge the PR
+- stop after push/PR creation
+
+Completed M0 foundation:
+- Kotlin
+- Jetpack Compose
+- Material 3
+- Gradle Kotlin DSL
+- Android module `app-patient`
+- namespace `com.fantest.masmou.patient`
+- app name `Masmou Patient`
+- landscape-first foundation
+- Arabic + English resource foundation
+- calm/professional launch screen
+- no Internet dependency
+
+Do NOT implement:
+- drawing
+- TTS feature
+- BLE
+- Family app
+- Room
+- backend/cloud
+- accounts
+- OCR/AI
+- real emergency calling
+- hardware
+- M1 or later
+
+Work autonomously on safe source/build fixes.
+Prefer the smallest correct change.
+
+At completion verify:
+- relevant targeted checks
+- `lintDebug` where available
+- `assembleDebug`
+
+Never claim a check passed unless it actually ran successfully.
+
+M0 implementation commit:
+`8a50de9a6262423fa972276b45b7c41cfb358f22`
+
+M0 merge commit:
+`a8810eb2cd8c88486fd31c22e9ff3ae0dd2665f9`
+
+Wait for one explicit issue request. Do not begin M1 automatically.
