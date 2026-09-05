@@ -1,0 +1,29 @@
+name: M1 verification
+
+on:
+  push:
+    branches:
+      - codex/m1-patient-shell
+  workflow_dispatch:
+
+jobs:
+  connected-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+      - name: Run connected M1 tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          profile: Nexus 6
+          disable-animations: true
+          script: ./gradlew :app-patient:connectedDebugAndroidTest
