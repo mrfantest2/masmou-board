@@ -14,8 +14,8 @@ class PatientShellTest {
 
     @Test
     fun patientShellShowsPrimaryRegions() {
-        compose.onNodeWithText("Communication area").assertIsDisplayed()
-        compose.onNodeWithText("Quick actions").assertIsDisplayed()
-        compose.onNodeWithText("Tools").assertIsDisplayed()
+        compose.onNodeWithText(compose.activity.getString(R.string.communication_area_title)).assertIsDisplayed()
+        compose.onNodeWithText(compose.activity.getString(R.string.quick_actions_title)).assertIsDisplayed()
+        compose.onNodeWithText(compose.activity.getString(R.string.tools_title)).assertIsDisplayed()
     }
 }
