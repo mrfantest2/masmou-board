@@ -26,7 +26,7 @@ class FoundationTest {
         val config = Configuration(compose.activity.resources.configuration)
         config.setLocale(Locale.forLanguageTag("ar"))
         val context = compose.activity.createConfigurationContext(config)
-        assertEquals("مساحة التواصل", context.getString(R.string.communication_area_title))
+        assertEquals("اكتب أو ارسم", context.getString(R.string.communication_area_title))
         assertEquals(android.view.View.LAYOUT_DIRECTION_RTL, context.resources.configuration.layoutDirection)
     }
 
@@ -35,7 +35,7 @@ class FoundationTest {
         val config = Configuration(compose.activity.resources.configuration)
         config.setLocale(Locale.ENGLISH)
         val context = compose.activity.createConfigurationContext(config)
-        assertEquals("Communication area", context.getString(R.string.communication_area_title))
+        assertEquals("Write or draw", context.getString(R.string.communication_area_title))
         assertEquals(android.view.View.LAYOUT_DIRECTION_LTR, context.resources.configuration.layoutDirection)
     }
 }
