@@ -22,6 +22,7 @@ Masmou Board is an accessible communication-board concept for people who may hav
 - bounded Family event history
 - repeated-pain rule and notification
 - offline-first; no backend, analytics, OCR or continuous recording
+- native Windows Patient test client in `windows-patient/` for desktop interaction testing
 
 ## Verification
 
