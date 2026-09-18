@@ -3,4 +3,17 @@
     <string name="welcome_title">Welcome</string>
     <string name="welcome_message">A calm space for communication.</string>
     <string name="offline_note">No internet connection needed</string>
+
+    <string name="status_offline_ready">Offline ready</string>
+    <string name="communication_area_title">Communication area</string>
+    <string name="communication_area_hint">Writing and message space</string>
+    <string name="quick_actions_title">Quick actions</string>
+    <string name="quick_action_one">Quick action 1</string>
+    <string name="quick_action_two">Quick action 2</string>
+    <string name="quick_action_three">Quick action 3</string>
+    <string name="quick_action_four">Quick action 4</string>
+    <string name="tools_title">Tools</string>
+    <string name="tool_one">Tool 1</string>
+    <string name="tool_two">Tool 2</string>
+    <string name="tool_three">Tool 3</string>
 </resources>

@@ -2,4 +2,17 @@
     <string name="welcome_title">مرحباً بك</string>
     <string name="welcome_message">مساحة هادئة للتواصل.</string>
     <string name="offline_note">لا حاجة إلى اتصال بالإنترنت</string>
+
+    <string name="status_offline_ready">جاهز بدون إنترنت</string>
+    <string name="communication_area_title">مساحة التواصل</string>
+    <string name="communication_area_hint">مساحة للكتابة والرسائل</string>
+    <string name="quick_actions_title">إجراءات سريعة</string>
+    <string name="quick_action_one">إجراء سريع ١</string>
+    <string name="quick_action_two">إجراء سريع ٢</string>
+    <string name="quick_action_three">إجراء سريع ٣</string>
+    <string name="quick_action_four">إجراء سريع ٤</string>
+    <string name="tools_title">الأدوات</string>
+    <string name="tool_one">أداة ١</string>
+    <string name="tool_two">أداة ٢</string>
+    <string name="tool_three">أداة ٣</string>
 </resources>
