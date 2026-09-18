@@ -1,50 +1,81 @@
 # Masmou Board — Current Handoff
 
 Repository: `mrfantest2/masmou-board`
-Local path: `C:\Users\Administrator\masmou-board`
+Local source: `C:\Users\Administrator\masmou-board`
+Local project hub: `C:\xampp\htdocs\masmou-board`
 
 ## Current phase
-Android-first software prototype.
 
-## Current milestone
-M0 — Android Foundation is complete and merged.
+Android-first software prototype v1.0.
 
-## Current objective
-No implementation milestone is active. Preserve the verified M0 foundation
-until the user explicitly requests the next issue.
+## Current implementation
+
+The software prototype is functionally complete for the agreed MVP scope:
+
+- `app-patient` — landscape bedside communication app
+- `app-family` — companion event/history/alert app
+- `core-model` — shared versioned communication event protocol
+- local Android TextToSpeech
+- freehand finger/stylus canvas
+- Yes / No / Water / Pain / Toilet / Nurse / Family / Urgent
+- typed text -> Speak
+- Arabic / English with RTL/LTR
+- low-vision mode, semantics and haptics
+- Patient BLE GATT server and Family BLE client/reconnect path
+- bounded local Family event history
+- repeated-pain rule: 2 Pain events within 60 minutes
+- high-priority Family notification
+- bedside keep-awake / immersive behavior
+
+## Verification snapshot — 18 September 2026
+
+Final Gradle verification passed:
+
+```
+:core-model:test
+:app-patient:assembleDebug
+:app-patient:lintDebug
+:app-family:assembleDebug
+:app-family:lintDebug
+BUILD SUCCESSFUL
+```
+
+Emulator `emulator-5554` QA passed for:
+
+- Patient launch / landscape layout
+- two Pain events -> Family event history
+- repeated-pain UI alert
+- Android notification
+- Family restart persistence
+- Arabic UI / RTL
+- low-vision toggle
+- two-step clear confirmation
+- canvas lock disabling Clear
+
+Per user instruction, OnePlus 7 is excluded from current and future QA runs.
+
+## Transport note
+
+Production builds retain the real BLE implementation.
+Debug builds include an emulator-only local event receiver so Patient/Family workflow can be regression-tested without physical BLE hardware.
+
+## Storage note
+
+M7 behavior is implemented with Android `SQLiteOpenHelper`, not Room.
+The store is bounded to the 100 newest events. This is an intentional implementation simplification, not a claim that Room was completed.
 
 ## Source-of-truth order
 
-1. active GitHub issue / current user task
-2. `AGENTS.md`
-3. `docs/DECISIONS.md`
-4. `docs/PRODUCT_SPEC.md`
-5. `docs/ARCHITECTURE.md`
-6. `docs/MILESTONES.md`
-7. `docs/SOURCE_NOTES.md`
-8. archived PDF only when source verification is explicitly required
+1. active user task
+2. GitHub `main`
+3. `AGENTS.md`
+4. this file
+5. `docs/DECISIONS.md`
+6. `docs/PRODUCT_SPEC.md`
+7. `docs/ARCHITECTURE.md`
+8. `docs/MILESTONES.md`
 
-## Completed M0
+## Next work
 
-- GitHub issue: `#1 — M0 Android Foundation` — closed
-- implementation commit: `8a50de9a6262423fa972276b45b7c41cfb358f22`
-- pull request: `#15 — M0 Android Foundation` — merged
-- merge commit: `a8810eb2cd8c88486fd31c22e9ff3ae0dd2665f9`
-- verification: build and lint passed; 3 connected device tests passed
-
-## Stop condition
-Do not automatically begin M1 or any later milestone.
-
-
-## GitHub execution
-
-Active repository:
-`mrfantest2/masmou-board`
-
-For the next implementation request:
-- confirm the exact active issue
-- synchronize `main`
-- use the branch listed in `docs/GITHUB_WORKFLOW.md`
-- implement and verify only that issue
-- commit, push, and open one PR
-- do not merge automatically
+Software MVP should now receive only demonstrated fixes or explicitly requested enhancements.
+Dedicated hardware research remains deferred.

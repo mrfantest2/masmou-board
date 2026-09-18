@@ -1,24 +1,18 @@
 # Masmou Board — Product Roadmap
 
 ## Phase A — Android Patient proof
-Validate:
-- communication shell
-- drawing
-- quick needs
-- typed communication
-- local TTS
-- Arabic/English
-- accessibility
+Status: implemented in v1.0.
+
+Includes communication shell, drawing, quick needs, typed communication, local TTS, Arabic/English and accessibility.
 
 ## Phase B — Family connection proof
-Add:
-- Family app
-- BLE/local Bluetooth
-- event history
-- repeated-pain alert
-- reconnect reliability
+Status: implemented in v1.0.
+
+Includes separate Family app, production BLE transport, versioned events, bounded history, repeated-pain alert and reconnect path.
 
 ## Phase C — Usability evaluation
+Status: not started.
+
 Evaluate with appropriate users/professionals:
 - time to communicate
 - incorrect taps
@@ -28,10 +22,10 @@ Evaluate with appropriate users/professionals:
 - button size
 - accessibility problems
 
-The original concept specifically proposes evaluation with speech and nursing specialists.
+Release regression QA currently uses Android emulation. OnePlus 7 is excluded by user instruction.
 
 ## Phase D — Dedicated hardware proof
-Only after Android UX is validated.
+Status: deferred.
 
 Preserve original physical concepts:
 - A5-class
@@ -43,16 +37,14 @@ Preserve original physical concepts:
 - tactile accessibility
 
 ## Phase E — Pilot hardware batch
-The original concept suggests an eventual pilot of roughly 50–100 units.
+Status: deferred.
 
-Do not start pilot manufacturing until:
-- software interaction is stable
-- hardware design is validated
-- BOM/quotes are credible
-- safety/use cases are reviewed
+Do not start pilot manufacturing until software interaction and hardware design are validated and BOM/quotes are credible.
 
 ## Phase F — Commercial/regulatory work
-Before any clinical deployment claims:
+Status: deferred.
+
+Before clinical deployment claims:
 - intended-use review
 - regulatory applicability
 - privacy/security

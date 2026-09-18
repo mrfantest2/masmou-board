@@ -1,25 +1,58 @@
-# Masmou Board local project hub
+# Masmou Board | مسموع
 
-Open http://localhost/masmou-board/ with XAMPP Apache running.
+**Repository:** `mrfantest2/masmou-board`  
+**Local working directory:** `C:\Users\Administrator\masmou-board`  
+**Current stage:** Android-first software prototype v1.0
 
-This is a static completed M0 snapshot from 5 September 2026, stored independently of
-the Android repository. No npm, database, remote fonts, or backend is needed.
-The page includes all 11 engineering milestones, product phases A–F, the
-verified debug APK, source documentation, a documentation ZIP, and build notes.
+**Current status:** Patient + Family MVP implemented. Final build/lint and emulator regression QA pass.
 
-## Refresh after a future approved milestone
+Masmou Board is an accessible communication-board concept for people who may have difficulty speaking, moving, or seeing. The Android prototype focuses on dignified, low-effort bedside communication for patients, families, caregivers, and clinical staff.
 
-1. Verify the new APK in the Android repository first.
-2. Copy the verified APK into `downloads/` and update its SHA-256 file.
-3. Refresh the relevant documentation copies and regenerate the handoff ZIP.
-4. Update the visible version, commit, PR state, date, verification results,
-   milestone status, download size, and screenshot in `index.html`.
-5. Verify each download through Apache before sharing the updated page.
+## v1.0 software scope
 
-`index.html` and `styles.css` are the website source. `assets/` holds the
-actual M0 device screenshot. `downloads/` contains copies; original repository
-documents and PDFs were not modified. The APK is a debug prototype, not a
-production release. PR #15 and Issue #1 are recorded as merged and closed; this is not a live status feed.
+- Patient landscape communication app
+- drawing canvas with colors / eraser / lock / protected clear
+- Yes / No / Water / Pain / Toilet / Nurse / Family / Urgent
+- typed message -> local Android TextToSpeech
+- Arabic / English with RTL/LTR
+- low-vision mode, semantics and haptics
+- separate Family app
+- production BLE Patient -> Family event transport
+- versioned shared event protocol
+- bounded Family event history
+- repeated-pain rule and notification
+- offline-first; no backend, analytics, OCR or continuous recording
 
-For another device on the same network, substitute this PC's LAN address
-for `localhost`, subject to the existing Apache and firewall configuration.
+## Verification
+
+Final verification:
+
+```
+:core-model:test
+:app-patient:assembleDebug
+:app-patient:lintDebug
+:app-family:assembleDebug
+:app-family:lintDebug
+BUILD SUCCESSFUL
+```
+
+Release QA uses `emulator-5554` per user instruction. OnePlus 7 is excluded from current/future QA runs.
+
+See `docs/V1_IMPLEMENTATION.md` for exact verification evidence and boundaries.
+
+## Project hub
+
+Static project/release hub lives in `website/` and is published locally to:
+
+`C:\xampp\htdocs\masmou-board`
+
+## Hardware direction
+
+The dedicated mini-tablet / custom hardware direction remains part of the roadmap, but OEM/ODM sourcing, enclosure design, BOM work, manufacturing and pilot production remain deferred until the Android UX is intentionally advanced.
+
+## Start here
+
+1. `AGENTS.md`
+2. `docs/HANDOFF.md`
+3. `docs/V1_IMPLEMENTATION.md`
+4. active GitHub issue / current user request

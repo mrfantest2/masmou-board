@@ -1,33 +1,101 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Masmou Board · Project hub</title>
-  <meta name="description" content="Masmou Board project roadmap, Android prototype download, and developer handoff.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masmou Board · v1.0 project hub</title>
+  <meta name="description" content="Masmou Board v1.0 Android Patient and Family communication prototype, downloads, verification and developer handoff.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header><a class="brand" href="#main"><span class="mark" aria-hidden="true">م</span><span>Masmou Board <small>PROJECT HUB</small></span></a><nav aria-label="Main navigation"><a href="#release">APK</a><a href="#roadmap">Roadmap</a><a href="#handoff">Handoff</a></nav><span lang="ar" dir="rtl" class="arabic">مسموع</span></header>
+<header>
+  <a class="brand" href="#main"><span class="mark" aria-hidden="true">م</span><span>Masmou Board <small>PROJECT HUB</small></span></a>
+  <nav aria-label="Main navigation"><a href="#release">Apps</a><a href="#verification">Verification</a><a href="#roadmap">Roadmap</a><a href="#handoff">Handoff</a></nav>
+  <span lang="ar" dir="rtl" class="arabic">مسموع</span>
+</header>
 <main id="main">
-<div class="page-heading"><div><p class="eyebrow">ANDROID-FIRST · OFFLINE-FIRST</p><h1>From foundation<br>to communication.</h1><p class="intro">The current build, the next steps, and everything needed to continue Masmou Patient.</p></div><div class="snapshot"><span class="dot"></span> Project snapshot<br><strong>05 September 2026</strong><small>Static handoff · status at publication</small></div></div>
-<section id="release" class="release" aria-labelledby="release-title"><div class="release-copy"><span class="badge">M0 COMPLETE · MERGED</span><h2 id="release-title">Masmou Patient <span>0.1.0</span></h2><p>A calm launch screen with landscape orientation and Arabic / English resources. This foundation build does not yet include communication tools.</p><div class="actions"><a class="button primary" href="downloads/masmou-patient-m0-debug.apk" download>Download Android APK <span aria-hidden="true">↓</span></a><a class="button secondary" href="https://github.com/mrfantest2/masmou-board/pull/15">View merged PR #15 <span aria-hidden="true">↗</span></a></div><p class="release-meta">Debug prototype · Android 8.0+ · <span id="apk-size">8.84 MB</span></p><details><summary>Install &amp; verify the download</summary><ol><li>Open this page on your Android device, or transfer the APK to it.</li><li>Open the APK and allow installation from that source if Android asks.</li><li>Launch <strong>Masmou Patient</strong>. The screen uses your Android language and opens in landscape.</li></ol><p>Build: <code>8a50de9a6262423fa972276b45b7c41cfb358f22</code></p><p>Merge: <code>a8810eb2cd8c88486fd31c22e9ff3ae0dd2665f9</code></p><p><a href="downloads/masmou-patient-m0-debug.apk.sha256" download>Download SHA-256 checksum</a></p><p>On a phone, use this computer’s LAN address instead of localhost.</p></details></div><figure><img src="assets/launch-screen.png" width="2340" height="1080" alt="Masmou Patient running in landscape: Welcome, a calm space for communication, no internet connection needed."><figcaption>Actual M0 build · Android 12 device</figcaption></figure></section>
-<section class="verification" aria-label="Build verification"><div><span class="pass">PASS</span><strong>APK build</strong><small>assembleDebug</small></div><div><span class="pass">3 / 3</span><strong>Device tests</strong><small>GM1903 · Android 12</small></div><div><span class="pass">0 ERRORS</span><strong>Android lint</strong><small>8 documented advisories</small></div><div><span class="pass">OFFLINE</span><strong>No Internet permission</strong><small>Verified in packaged APK</small></div></section>
-<section id="roadmap"><div class="section-heading"><div><p class="eyebrow">THE PATH AHEAD</p><h2>Engineering roadmap</h2></div><a href="downloads/MILESTONES.md" download>Full milestone brief ↓</a></div><p class="muted">M0 is complete and merged. M1–M10 remain planned; no future milestone is included in this APK.</p><div class="roadmap-list">
-<article class='milestone current'><span class='number'>M0</span><div><h3>Android Foundation</h3><p>Kotlin &#183; Jetpack Compose &#183; Material 3 &#183; Gradle Kotlin DSL</p></div><span class='state'>Complete</span></article>
-<article class='milestone'><span class='number'>M1</span><div><h3>Patient Communication Shell</h3><p>header/status &#183; central canvas placeholder &#183; large quick-action area &#183; bottom tool area</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M2</span><div><h3>Writing Canvas</h3><p>finger/stylus drawing &#183; black/blue/red/green &#183; eraser &#183; clear</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M3</span><div><h3>Quick Actions + TTS</h3><p>Yes / No / Water / Pain / Toilet / Nurse / Family / Urgent &#183; local Android TextToSpeech &#183; Arabic/English phrases &#183; typed text -&gt; Speak</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M4</span><div><h3>Accessibility</h3><p>standard mode &#183; low-vision mode &#183; TalkBack semantics &#183; larger UI</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M5</span><div><h3>Family App Foundation</h3><p>separate Android app &#183; local patient/family profile foundation &#183; connection placeholder &#183; recent events UI</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M6</span><div><h3>BLE Communication</h3><p>Patient -&gt; Family BLE/local Bluetooth &#183; connection state &#183; versioned messages &#183; reconnect</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M7</span><div><h3>Event History + Pain Alert</h3><p>Room &#183; bounded event history &#183; timestamps &#183; repeated-pain rule</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M8</span><div><h3>Reliability / Bedside Hardening</h3><p>full-screen/kiosk-friendly behavior &#183; accidental exit reduction &#183; lifecycle recovery &#183; state restoration</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M9</span><div><h3>Real Device QA</h3><p>tablet &#183; phone &#183; stylus if available &#183; Arabic</p></div><span class='state'>Planned</span></article>
-<article class='milestone'><span class='number'>M10</span><div><h3>Hardware Prototype Research</h3><p>A5-class device &#183; ~250 g target &#183; ~7–9 mm target &#183; easy-grip retained stylus</p></div><span class='state'>Planned</span></article>
-</div><details class="long-view"><summary>The longer view · product phases A–F</summary><div class="phase-grid"><p><strong>A · Patient proof</strong>Communication, drawing, quick needs, local speech, and accessibility.</p><p><strong>B · Family connection</strong>Local Bluetooth, history, pain alerts, and reconnect reliability.</p><p><strong>C · Usability evaluation</strong>Readability, fatigue, touch accuracy, and specialist evaluation.</p><p><strong>D · Hardware proof</strong>Only after the Android experience is validated.</p><p><strong>E · Pilot batch</strong>After hardware validation and credible manufacturing estimates.</p><p><strong>F · Commercial readiness</strong>Intended use, privacy, regulatory applicability, and manufacturing QA.</p></div><a href="downloads/ROADMAP.md" download>Download product roadmap ↓</a></details></section>
-<section id="handoff"><div class="section-heading"><div><p class="eyebrow">CONTINUE WITH CONTEXT</p><h2>Project handoff</h2></div><a class="button secondary" href="downloads/masmou-m0-handoff.zip" download>Download handoff bundle ↓</a></div><div class="handoff-grid"><article class="handoff-card"><h3>Where the project stands</h3><dl><dt>Repository</dt><dd><a href="https://github.com/mrfantest2/masmou-board">mrfantest2/masmou-board ↗</a></dd><dt>Completed branch</dt><dd><code>codex/m0-foundation</code></dd><dt>Issue</dt><dd><a href="https://github.com/mrfantest2/masmou-board/issues/1">#1 · closed</a></dd><dt>Review</dt><dd><a href="https://github.com/mrfantest2/masmou-board/pull/15">PR #15 · merged</a></dd></dl><p>M0 is complete. Start M1 only after a separate request and the agreed GitHub workflow.</p></article><article class="handoff-card"><h3>Read in this order</h3><ol class="doc-list"><li><a href="downloads/AGENTS.md" download>Project instructions</a></li><li><a href="downloads/HANDOFF.md" download>Original milestone handoff</a></li><li><a href="downloads/M0_IMPLEMENTATION.md" download>M0 implementation &amp; verification</a></li><li><a href="downloads/GITHUB_WORKFLOW.md" download>GitHub workflow</a></li><li><a href="downloads/NON_CODEX_HANDOFF.md" download>General chat handoff</a></li></ol><p>The original handoff is preserved. Use the M0 implementation report for completed work and exact verification results.</p></article><article class="handoff-card"><h3>Build locally</h3><p>JDK 17+, Android SDK 35, and a device or emulator for connected tests.</p><pre><code>.\gradlew.bat :app-patient:assembleDebug
-.\gradlew.bat :app-patient:lintDebug
-.\gradlew.bat :app-patient:connectedDebugAndroidTest</code></pre><p>Initial dependency downloads need Internet. The installed application does not.</p><a href="downloads/M0_IMPLEMENTATION.md" download>Build notes &amp; lint advisories ↓</a></article></div></section>
-<footer><span>Masmou Board <span lang="ar" dir="rtl">· لوحة تواصل</span></span><span>Local project hub · M0 snapshot · No analytics</span></footer>
-</main></body></html>
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">ANDROID-FIRST · OFFLINE-FIRST · V1.0</p>
+      <h1>Communication when<br>speech is difficult.</h1>
+      <p class="intro">Masmou v1.0 pairs a bedside Patient communication board with a local Family companion for history and alerts. Core Patient communication works without Internet or Bluetooth.</p>
+    </div>
+    <div class="snapshot"><span class="dot"></span> Release snapshot<br><strong>18 September 2026</strong><small>Patient + Family MVP</small></div>
+  </div>
+
+  <section id="release" class="release" aria-labelledby="release-title">
+    <div class="release-copy">
+      <span class="badge">V1.0 SOFTWARE MVP · VERIFIED</span>
+      <h2 id="release-title">Masmou Patient + Family <span>1.0.0</span></h2>
+      <p>Patient provides a large drawing surface, eight quick needs, typed speech, local TextToSpeech, Arabic/English, low-vision mode and protected bedside controls. Family receives versioned communication events, keeps a bounded local history and raises a repeated-pain alert.</p>
+      <div class="actions">
+        <a class="button primary" href="downloads/masmou-patient-v1-debug.apk" download>Patient APK ↓</a>
+        <a class="button primary" href="downloads/masmou-family-v1-debug.apk" download>Family APK ↓</a>
+        <a class="button secondary" href="downloads/masmou-v1-handoff.zip" download>Full v1 handoff ↓</a>
+        <a class="button secondary" href="https://github.com/mrfantest2/masmou-board">GitHub ↗</a>
+      </div>
+      <p class="release-meta">Debug prototypes · Android 8.0+ · no cloud backend · no analytics · no OCR · no continuous recording</p>
+      <details>
+        <summary>Checksums and implementation notes</summary>
+        <p><a href="downloads/masmou-patient-v1-debug.apk.sha256" download>Patient SHA-256</a> · <a href="downloads/masmou-family-v1-debug.apk.sha256" download>Family SHA-256</a></p>
+        <p><a href="downloads/V1_IMPLEMENTATION.md" download>v1 implementation &amp; verification report</a></p>
+        <p>Production builds retain the BLE transport. Release regression testing uses an emulator-only debug transport so the Patient/Family workflow can be tested without physical BLE hardware.</p>
+      </details>
+    </div>
+    <div class="release-gallery">
+      <figure><img src="assets/masmou-patient-v1.png" alt="Masmou Patient v1 landscape communication screen with drawing tools and quick needs."><figcaption>Patient v1 · emulator release QA</figcaption></figure>
+      <figure><img src="assets/masmou-family-v1.png" alt="Masmou Family v1 showing communication history and repeated pain alert."><figcaption>Family v1 · repeated-pain flow</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="verification" class="verification" aria-label="Release verification">
+    <div><span class="pass">PASS</span><strong>Both APKs</strong><small>assembleDebug</small></div>
+    <div><span class="pass">PASS</span><strong>Android lint</strong><small>Patient + Family</small></div>
+    <div><span class="pass">PASS</span><strong>Core tests</strong><small>protocol + pain rule</small></div>
+    <div><span class="pass">PASS</span><strong>Emulator flow</strong><small>Patient → Family → alert</small></div>
+  </section>
+
+  <section class="evidence">
+    <div class="section-heading"><div><p class="eyebrow">RELEASE EVIDENCE</p><h2>What was exercised</h2></div></div>
+    <div class="evidence-grid">
+      <article><h3>Patient communication</h3><p>Landscape UI, drawing canvas, color tools, eraser, lock/unlock, protected clear, eight quick needs, typed speech, local TTS and speech-rate control.</p></article>
+      <article><h3>Accessibility</h3><p>Arabic/English switching, RTL/LTR, low-vision mode, high-contrast touch targets, semantics and haptic feedback.</p></article>
+      <article><h3>Family alerts</h3><p>Two Pain events within 60 minutes produce persisted history, repeated-pain UI state and a high-importance Android notification.</p></article>
+      <article><h3>Reliability</h3><p>Family history and alert state survive force-stop/restart. Patient remains usable when the remote transport is unavailable.</p></article>
+    </div>
+    <p class="muted">Current release QA uses <code>emulator-5554</code> per user instruction. OnePlus 7 is excluded from current and future QA runs. Production BLE source is included and build/lint verified; this release does not claim a fresh physical-device BLE certification.</p>
+  </section>
+
+  <section id="roadmap">
+    <div class="section-heading"><div><p class="eyebrow">ENGINEERING STATUS</p><h2>Roadmap</h2></div><a href="downloads/MILESTONES.md" download>Milestone record ↓</a></div>
+    <div class="roadmap-list">
+      <article class="milestone current"><span class="number">M0</span><div><h3>Android Foundation</h3><p>Kotlin · Compose · localization · landscape base</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M1</span><div><h3>Patient Communication Shell</h3><p>responsive layout · RTL/LTR · bedside regions</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M2</span><div><h3>Writing Canvas</h3><p>drawing · colors · eraser · lock · protected clear</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M3</span><div><h3>Quick Actions + TTS</h3><p>eight needs · local speech · typed communication</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M4</span><div><h3>Accessibility</h3><p>low vision · semantics · haptics · strong contrast</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M5</span><div><h3>Family App</h3><p>separate companion · event history · alert UI</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M6</span><div><h3>BLE Communication</h3><p>GATT server/client · versioned protocol · reconnect path</p></div><span class="state">Implemented</span></article>
+      <article class="milestone current"><span class="number">M7</span><div><h3>History + Pain Alert</h3><p>bounded SQLite history · timestamps · 2 Pain / 60 min</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M8</span><div><h3>Bedside Hardening</h3><p>keep-awake · immersive UI · lifecycle recovery</p></div><span class="state">Complete</span></article>
+      <article class="milestone current"><span class="number">M9</span><div><h3>Release QA</h3><p>emulator regression · Arabic · low vision · persistence · alerts</p></div><span class="state">Emulator pass</span></article>
+      <article class="milestone"><span class="number">M10</span><div><h3>Hardware Prototype Research</h3><p>A5-class device · retained stylus · bedside hardware · BOM/OEM</p></div><span class="state">Deferred</span></article>
+    </div>
+  </section>
+
+  <section id="handoff">
+    <div class="section-heading"><div><p class="eyebrow">CONTINUE WITH CONTEXT</p><h2>Project handoff</h2></div><a class="button secondary" href="downloads/masmou-v1-handoff.zip" download>Download v1 bundle ↓</a></div>
+    <div class="handoff-grid">
+      <article class="handoff-card"><h3>Source of truth</h3><dl><dt>Repository</dt><dd><a href="https://github.com/mrfantest2/masmou-board">mrfantest2/masmou-board ↗</a></dd><dt>Local source</dt><dd><code>C:\Users\Administrator\masmou-board</code></dd><dt>Local hub</dt><dd><code>C:\xampp\htdocs\masmou-board</code></dd></dl><p>Future changes should start from GitHub main and the current handoff.</p></article>
+      <article class="handoff-card"><h3>Read in this order</h3><ol class="doc-list"><li><a href="downloads/HANDOFF.md" download>Current handoff</a></li><li><a href="downloads/V1_IMPLEMENTATION.md" download>v1 implementation report</a></li><li><a href="downloads/ARCHITECTURE.md" download>Architecture</a></li><li><a href="downloads/DECISIONS.md" download>Accepted decisions</a></li><li><a href="downloads/ROADMAP.md" download>Product roadmap</a></li></ol></article>
+      <article class="handoff-card"><h3>Build locally</h3><pre><code>.\gradlew.bat :core-model:test
+.\gradlew.bat :app-patient:assembleDebug :app-patient:lintDebug
+.\gradlew.bat :app-family:assembleDebug :app-family:lintDebug</code></pre><p>Initial Gradle dependency downloads require Internet; the Patient communication experience itself does not.</p></article>
+    </div>
+  </section>
+
+  <footer><span>Masmou Board <span lang="ar" dir="rtl">· لوحة تواصل</span></span><span>v1.0 project hub · no analytics</span></footer>
+</main>
+</body>
+</html>

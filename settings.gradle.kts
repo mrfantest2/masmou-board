@@ -13,4 +13,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MasmouBoard"
+include(":core-model")
 include(":app-patient")
+include(":app-family")

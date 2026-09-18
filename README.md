@@ -1,47 +1,58 @@
 # Masmou Board | مسموع
 
-**Repository:** `mrfantest2/masmou-board`
-**Local working directory:** `C:\Users\Administrator\masmou-board`
-**Current stage:** Android-first software prototype
+**Repository:** `mrfantest2/masmou-board`  
+**Local working directory:** `C:\Users\Administrator\masmou-board`  
+**Current stage:** Android-first software prototype v1.0
 
-**Current status:** M0 Android Foundation is merged. No later milestone has
-started. The verified debug APK and project hub are in `website/`.
+**Current status:** Patient + Family MVP implemented. Final build/lint and emulator regression QA pass.
 
-Masmou Board is an accessible communication-board concept for people who may have difficulty speaking, moving, or seeing. The original Arabic concept is focused on dignified, low-effort communication for patients, families, caregivers, and clinical staff.
+Masmou Board is an accessible communication-board concept for people who may have difficulty speaking, moving, or seeing. The Android prototype focuses on dignified, low-effort bedside communication for patients, families, caregivers, and clinical staff.
 
-## Current decision
+## v1.0 software scope
 
-Build and validate the experience as an **Android app first**.
+- Patient landscape communication app
+- drawing canvas with colors / eraser / lock / protected clear
+- Yes / No / Water / Pain / Toilet / Nurse / Family / Urgent
+- typed message -> local Android TextToSpeech
+- Arabic / English with RTL/LTR
+- low-vision mode, semantics and haptics
+- separate Family app
+- production BLE Patient -> Family event transport
+- versioned shared event protocol
+- bounded Family event history
+- repeated-pain rule and notification
+- offline-first; no backend, analytics, OCR or continuous recording
 
-The dedicated mini-tablet / custom hardware direction remains part of the product roadmap, but OEM/ODM sourcing, factories, enclosure design, manufacturing, BOM work, and travel planning are deferred until the Android prototype is proven.
+## Verification
+
+Final verification:
+
+```
+:core-model:test
+:app-patient:assembleDebug
+:app-patient:lintDebug
+:app-family:assembleDebug
+:app-family:lintDebug
+BUILD SUCCESSFUL
+```
+
+Release QA uses `emulator-5554` per user instruction. OnePlus 7 is excluded from current/future QA runs.
+
+See `docs/V1_IMPLEMENTATION.md` for exact verification evidence and boundaries.
+
+## Project hub
+
+Static project/release hub lives in `website/` and is published locally to:
+
+`C:\xampp\htdocs\masmou-board`
+
+## Hardware direction
+
+The dedicated mini-tablet / custom hardware direction remains part of the roadmap, but OEM/ODM sourcing, enclosure design, BOM work, manufacturing and pilot production remain deferred until the Android UX is intentionally advanced.
 
 ## Start here
 
-Codex should read only:
-
 1. `AGENTS.md`
 2. `docs/HANDOFF.md`
-3. the active GitHub issue / requested milestone
-
-Then read only the exact sections of the remaining docs needed for that task.
-
-Do **not** repeatedly read the PDF or all documentation on every Codex run.
-
-## Package contents
-
-- `AGENTS.md` — persistent Codex execution rules
-- `CODEX_HANDOFF.md` — complete handoff
-- `FIRST_CODEX_PROMPT.txt` — first-run prompt
-- `docs/HANDOFF.md` — small current-state context
-- `docs/GITHUB_WORKFLOW.md` — strict issue → branch → commit → PR → stop workflow
-- `docs/PRODUCT_SPEC.md` — normalized Android product spec
-- `docs/ARCHITECTURE.md` — technical architecture
-- `docs/DECISIONS.md` — accepted decisions
-- `docs/MILESTONES.md` — one-milestone-per-run plan
-- `docs/ROADMAP.md` — product roadmap
-- `docs/SOURCE_NOTES.md` — what came from the attached Arabic concept
-- `docs/source/original_concept_ar.pdf` — archived source PDF; not routine Codex context
-- `hardware/README.md` — deferred hardware scope
-- `INSTALL_HANDOFF.ps1` — copies this package into the local repository
-- `NON_CODEX_HANDOFF.md` — standalone handoff for a general chat assistant
-- `website/` — static roadmap, handoff, and verified M0 APK download hub
+3. `docs/V1_IMPLEMENTATION.md`
+4. active GitHub issue / current user request
